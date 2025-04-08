@@ -9,6 +9,7 @@ import { StatusBar } from 'react-native'
 import { config } from './config/gluestack-ui.config'
 
 import { Loading } from '@components/Loading'
+import { SignIn } from '@screens/signin'
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold })
@@ -21,13 +22,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? (
-        <Center flex={1} bg="$gray700">
-          <Text color="white">Home</Text>
-        </Center>
-      ) : (
-        <Loading />
-      )}
+      {fontsLoaded ? <SignIn /> : <Loading />}
     </GluestackUIProvider>
   )
 }
