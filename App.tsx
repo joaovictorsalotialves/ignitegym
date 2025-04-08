@@ -3,30 +3,28 @@ import {
   Roboto_700Bold,
   useFonts,
 } from '@expo-google-fonts/roboto'
-import { GluestackUIProvider, Text } from '@gluestack-ui/themed'
+import { Center, GluestackUIProvider, Text } from '@gluestack-ui/themed'
 import { StatusBar, View } from 'react-native'
+import { config } from './config/gluestack-ui.config'
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold })
 
   return (
-    <GluestackUIProvider>
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#202024',
-        }}
-      >
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor="transparent"
-          translucent
-        />
+    <GluestackUIProvider config={config}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
 
-        {fontsLoaded ? <Text color="white">Home</Text> : <View />}
-      </View>
+      {fontsLoaded ? (
+        <Center flex={1} bg="$gray700">
+          <Text color="white">Home</Text>
+        </Center>
+      ) : (
+        <View />
+      )}
     </GluestackUIProvider>
   )
 }
